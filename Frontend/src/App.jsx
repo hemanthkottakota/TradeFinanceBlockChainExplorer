@@ -8,7 +8,7 @@ function App() {
       method: "POST",
     });
     setText("");
-    alert("Saved!");
+    alert("Saved");
   };
 
   return (
