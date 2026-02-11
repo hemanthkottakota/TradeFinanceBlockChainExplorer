@@ -1,9 +1,26 @@
-export default function App() {
+import { useState } from "react";
+
+function App() {
+  const [text, setText] = useState("");
+
+  const saveData = async () => {
+    await fetch(`http://127.0.0.1:8000/save?text=${text}`, {
+      method: "POST",
+    });
+    setText("");
+    alert("Saved!");
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <h1 className="text-4xl font-bold text-blue-600">
-        Tailwind CSS is working 🚀
-      </h1>
+    <div style={{ padding: 20 }}>
+      <input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Enter text"
+      />
+      <button onClick={saveData}>Save</button>
     </div>
   );
 }
+
+export default App;
