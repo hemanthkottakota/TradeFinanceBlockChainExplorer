@@ -1,0 +1,61 @@
+.ledger {
+  padding: 30px;
+}
+.page-title {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #1a237e;
+}
+.ledger-table {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+.ledger-header,
+.ledger-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 15px 20px;
+  align-items: center;
+}
+.ledger-header {
+  background: #1a237e;
+  color: white;
+  font-weight: bold;
+}
+.ledger-row {
+  border-bottom: 1px solid #eee;
+}
+.ledger-row:hover {
+  background: #f5f7ff;
+}
+.status {
+  padding: 5px 10px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+}
+.status.issued {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+.status.shipped {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+.status.completed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+.status.verified {
+  background: #ede7f6;
+  color: #5e35b1;
+}
+@media (max-width: 768px) {
+  .ledger-header,
+  .ledger-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}

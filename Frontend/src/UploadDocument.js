@@ -1,49 +1,76 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Layout from "../layout/Layout";
+import { DocumentContext } from "../../context/DocumentContext";
 import "./UploadDocument.css";
 
 function UploadDocument() {
-  const [doc, setDoc] = useState({
-    type: "INVOICE",
-    number: "",
-    file: null,
-    hash: "",
-  });
-  const generateHash = () => {
-    const randomHash = Math.random().toString(36).substring(2, 15);
-    setDoc({ ...doc, hash: randomHash });
+  const { documents, addDocument, removeDocument } =
+    useContext(DocumentContext);
+
+  const [selectedFiles, setSelectedFiles] = useState([]);
+
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    setSelectedFiles(files);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    generateHash();
-    alert("Document uploaded with hash!");
+
+  const handleUpload = () => {
+    selectedFiles.forEach((file) => {
+      addDocument({
+        name: file.name,
+        size: file.size,
+        date: new Date().toLocaleString(),
+      });
+    });
+
+    setSelectedFiles([]);
   };
+
   return (
     <Layout>
-      <div className="upload-card">
-        <h2>Upload Trade Document</h2>
-        <form onSubmit={handleSubmit}>
-          <select  onChange={(e) => setDoc({ ...doc, type: e.target.value })}>
-            <option>INVOICE</option>
-            <option>LOC</option>
-            <option>BILL_OF_LADING</option>
-            <option>PO</option>
-            <option>COO</option>
-            <option>INSURANCE_CERT</option>
-          </select>
-          <input
-            placeholder="Document Number"
-            onChange={(e) =>
-              setDoc({ ...doc, number: e.target.value })
-            }/>
-          <input
-            type="file"
-            onChange={(e) =>
-              setDoc({ ...doc, file: e.target.files[0] })
-            }/>
-          <button type="submit">Upload</button>
-          {doc.hash && <p className="hash">Hash: {doc.hash}</p>}
-        </form>
+      <div className="upload-page">
+        <h2>Upload Trade Documents</h2>
+        <div className="upload-wrapper">
+          <div className="upload-box">
+            <p className="upload-title">Select Documents</p>
+            <input
+              type="file"
+              multiple
+              onChange={handleFileChange}
+              className="file-input"
+            />
+            <button
+              className="upload-btn"
+              onClick={handleUpload}
+              disabled={selectedFiles.length === 0}
+            >
+              Upload Documents
+            </button>
+          </div>
+        </div>
+        <div className="uploaded-section">
+          <h3>Uploaded Documents</h3>
+
+          {documents.length === 0 && (
+            <p className="empty-text">No documents uploaded yet.</p>
+          )}
+
+          {documents.map((doc, index) => (
+            <div className="file-item" key={index}>
+              <div>
+                <strong>{doc.name}</strong>
+                <p>{doc.date}</p>
+              </div>
+
+              <button
+                className="remove-btn"
+                onClick={() => removeDocument(index)}
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </Layout>
   );
