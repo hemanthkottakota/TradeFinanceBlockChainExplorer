@@ -10,7 +10,9 @@ function Sidebar() {
         <Link to="/upload">Upload Document</Link>
         <Link to="/ledger">Ledger Explorer</Link>
         <Link to="/transactions">Transactions</Link>
+        <Link to="/risk">Risk Dashboard</Link>
         <Link to="/analytics">Analytics</Link>
+        
       </nav>
     </div>
   );

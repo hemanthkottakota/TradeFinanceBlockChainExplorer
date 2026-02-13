@@ -9,6 +9,8 @@ import { DocumentProvider } from "./context/DocumentContext";
 import Transactions from "./pages/Transactions";
 import Analytics from "./pages/Analytics";
 import Ledger from "./pages/Ledger";
+import RiskDashboard from "./pages/risk/RiskDashboard";
+import Layout from "./Components/layout/Layout";
 function App(){
   return(
     <>
@@ -22,6 +24,7 @@ function App(){
       <Route path="/upload" element={<UploadDocument/>}/>
       <Route path="/ledger" element={<Ledger/>}/> 
       <Route path="/transactions" element={<Transactions/>}/>
+      <Route path="/risk" element={<><Layout> <RiskDashboard/> </Layout></>}/>
       <Route path="/analytics" element={<Analytics/>}/>
     </Routes>
     </DocumentProvider>

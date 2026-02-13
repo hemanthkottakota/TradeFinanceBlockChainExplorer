@@ -1,17 +1,51 @@
 .ledger {
   padding: 30px;
 }
+
 .page-title {
   margin-bottom: 20px;
   font-size: 28px;
   color: #1a237e;
 }
+
+/* Controls */
+.ledger-controls {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.ledger-controls input,
+.ledger-controls select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 180px;
+}
+
+.add-ledger-btn {
+  padding: 8px 15px;
+  background-color: #1a237e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-ledger-btn:hover {
+  background-color: #283593;
+}
+
+/* Table */
 .ledger-table {
   background: white;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
+
 .ledger-header,
 .ledger-row {
   display: grid;
@@ -19,43 +53,94 @@
   padding: 15px 20px;
   align-items: center;
 }
+
 .ledger-header {
   background: #1a237e;
   color: white;
   font-weight: bold;
 }
+
 .ledger-row {
   border-bottom: 1px solid #eee;
+  transition: 0.2s;
 }
+
 .ledger-row:hover {
   background: #f5f7ff;
 }
+
+/* Status Badges */
 .status {
   padding: 5px 10px;
   border-radius: 6px;
   text-align: center;
   font-weight: bold;
+  font-size: 13px;
 }
+
 .status.issued {
   background: #e3f2fd;
   color: #1565c0;
 }
+
 .status.shipped {
   background: #fff3e0;
   color: #ef6c00;
 }
+
 .status.completed {
   background: #e8f5e9;
   color: #2e7d32;
 }
+
 .status.verified {
   background: #ede7f6;
   color: #5e35b1;
 }
+
+/* No Data */
+.no-data {
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #888;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .ledger-header,
   .ledger-row {
     grid-template-columns: 1fr;
     gap: 8px;
   }
+}
+/* Ledger Form */
+.ledger-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  background: #f9fafb;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.ledger-form input,
+.ledger-form select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.save-btn {
+  padding: 8px 15px;
+  background-color: #1a237e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background-color: #283593;
 }

@@ -1,23 +1,146 @@
-.analytics {
+.analytics-container {
   padding: 30px;
+  max-width: 1200px;
+  margin: auto;
 }
-.analytics-cards {
+
+/* ===== TITLE ===== */
+.title {
+  text-align: center;
+  margin-bottom: 35px;
+  color: #1a237e;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ===== SUMMARY CARDS ===== */
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
-.analytics-card {
+
+.card {
   background: white;
   padding: 25px;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+  border-top: 4px solid #1a237e;
 }
-.analytics-card:hover {
-  transform: scale(1.03);
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
-.analytics-card h3 {
+
+.card h3 {
+  font-size: 15px;
   margin-bottom: 10px;
+  color: #555;
+}
+
+.card p {
+  font-size: 22px;
+  font-weight: bold;
   color: #1a237e;
+}
+
+/* ===== STATUS SECTION ===== */
+.status-section {
+  margin-top: 45px;
+  background: #f5f7fb;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.status-section h2 {
+  margin-bottom: 15px;
+  color: #1a237e;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.status-grid div {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: 0.3s ease;
+}
+
+.status-grid div:hover {
+  transform: translateY(-3px);
+}
+
+/* Optional: Color coding per status */
+.status-grid div:nth-child(1) { border-left: 5px solid #f9a825; }   /* Pending */
+.status-grid div:nth-child(2) { border-left: 5px solid #0288d1; }   /* In Progress */
+.status-grid div:nth-child(3) { border-left: 5px solid #2e7d32; }   /* Completed */
+.status-grid div:nth-child(4) { border-left: 5px solid #c62828; }   /* Disputed */
+
+
+/* ===== RISK SECTION ===== */
+.risk-section {
+  margin-top: 45px;
+  background: #fff8f8;
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 6px solid #c62828;
+}
+
+.risk-section h2 {
+  margin-bottom: 10px;
+  color: #c62828;
+}
+
+.risk-section p {
+  font-weight: 600;
+  color: #c62828;
+  font-size: 16px;
+}
+
+
+/* ===== EXPORT SECTION ===== */
+.export-section {
+  margin-top: 45px;
+  text-align: center;
+}
+
+.export-section button {
+  margin: 10px;
+  padding: 10px 22px;
+  border: none;
+  background: #1a237e;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.export-section button:hover {
+  background: #3949ab;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
 }
