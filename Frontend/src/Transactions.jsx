@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "../Components/layout/Layout";
+import Layout from "./Layout";
 import "./Transactions.css";
 
 function Transactions() {

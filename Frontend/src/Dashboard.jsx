@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../Components/layout/Layout";
+import Layout from "./Layout";
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
 

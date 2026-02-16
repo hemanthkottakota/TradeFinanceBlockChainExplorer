@@ -1,8 +1,14 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, TIMESTAMP
+from datetime import datetime
 from database import Base
 
-class Message(Base):
-    __tablename__ = "messages"
+class User(Base):
+    __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
-    text = Column(String(255), nullable=False)
+    name = Column(String(100), nullable=False)
+    email = Column(String(150), unique=True, index=True, nullable=False)
+    password = Column(String(200), nullable=False)
+    role = Column(String(20), nullable=False)
+    org_name = Column(String(100), nullable=False)
+    created_at = Column(TIMESTAMP, default=datetime.utcnow)
