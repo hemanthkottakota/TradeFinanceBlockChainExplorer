@@ -10,7 +10,13 @@ import Analytics from "./Analytics";
 import Ledger from "./Ledger";
 import RiskDashboard from "./RiskDashboard";
 import Layout from "./Layout";
+import Profile from "./Profile";
+import AuthGuard from "./AuthGuard";
 import { DocumentProvider } from "./DocumentContext";
+
+function Protected({ children }) {
+  return <AuthGuard>{children}</AuthGuard>;
+}
 
 function App() {
   return (
@@ -20,19 +26,64 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/upload" element={<UploadDocument />} />
-          <Route path="/ledger" element={<Ledger />} />
-          <Route path="/transactions" element={<Transactions />} />
+          <Route
+            path="/dashboard"
+            element={
+              <Protected>
+                <Dashboard />
+              </Protected>
+            }
+          />
+          <Route
+            path="/upload"
+            element={
+              <Protected>
+                <UploadDocument />
+              </Protected>
+            }
+          />
+          <Route
+            path="/ledger"
+            element={
+              <Protected>
+                <Ledger />
+              </Protected>
+            }
+          />
+          <Route
+            path="/transactions"
+            element={
+              <Protected>
+                <Transactions />
+              </Protected>
+            }
+          />
           <Route
             path="/risk"
             element={
-              <Layout>
-                <RiskDashboard />
-              </Layout>
+              <Protected>
+                <Layout>
+                  <RiskDashboard />
+                </Layout>
+              </Protected>
             }
           />
-          <Route path="/analytics" element={<Analytics />} />
+          <Route
+            path="/analytics"
+            element={
+              <Protected>
+                <Analytics />
+              </Protected>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Protected>
+                <Profile />
+              </Protected>
+            }
+          />
         </Routes>
       </DocumentProvider>
     </BrowserRouter>

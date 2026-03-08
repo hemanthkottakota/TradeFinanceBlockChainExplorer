@@ -9,7 +9,7 @@ function Register() {
     name: "",
     email: "",
     password: "",
-    role: "bank",
+    role: "BANK",
     org: "",
   });
   const [loading, setLoading] = useState(false);
@@ -30,7 +30,7 @@ function Register() {
 
     try {
       setLoading(true);
-      await api.post("/register", {
+      await api.post("/auth/register", {
         name: form.name,
         email: form.email,
         password: form.password,
@@ -44,6 +44,7 @@ function Register() {
       setLoading(false);
     }
   };
+
   return (
     <div className="register-container">
       <div className="register-card">
@@ -53,23 +54,26 @@ function Register() {
             name="name"
             placeholder="Full Name"
             value={form.name}
-            onChange={handleChange}/>
+            onChange={handleChange}
+          />
           <input
             name="email"
             placeholder="Email"
             value={form.email}
-            onChange={handleChange}/>
+            onChange={handleChange}
+          />
           <input
             name="password"
             type="password"
             placeholder="Password"
             value={form.password}
-            onChange={handleChange}/>
+            onChange={handleChange}
+          />
           <select name="role" value={form.role} onChange={handleChange}>
-            <option value="bank">Bank</option>
-            <option value="corporate">Corporate</option>
-            <option value="auditor">Auditor</option>
-            <option value="admin">Admin</option>
+            <option value="BANK">Bank</option>
+            <option value="CORPORATE">Corporate</option>
+            <option value="AUDITOR">Auditor</option>
+            <option value="ADMIN">Admin</option>
           </select>
           <input
             name="org"

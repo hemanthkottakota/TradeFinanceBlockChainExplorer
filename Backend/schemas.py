@@ -1,22 +1,12 @@
-from pydantic import BaseModel, EmailStr, Field
+from app.schemas.auth import TokenPair, UserLogin, UserRegister
+from app.schemas.org import OrgMeResponse
+from app.schemas.user import CurrentUserContext, UserResponse
 
-class UserRegister(BaseModel):
-    name: str = Field(..., min_length=3)
-    email: EmailStr
-    password: str = Field(..., min_length=6)
-    role: str
-    org_name: str
-
-class UserLogin(BaseModel):
-    email: EmailStr
-    password: str
-
-class UserResponse(BaseModel):
-    id: int
-    name: str
-    email: EmailStr
-    role: str
-    org_name: str
-    
-    class Config:
-        from_attributes = True
+__all__ = [
+    "UserRegister",
+    "UserLogin",
+    "TokenPair",
+    "UserResponse",
+    "CurrentUserContext",
+    "OrgMeResponse",
+]

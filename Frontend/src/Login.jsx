@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api } from "./api";
+import { setTokens, setUserProfile } from "./auth";
 import "./Login.css";
 
 function Login() {
@@ -21,8 +22,11 @@ function Login() {
 
     try {
       setLoading(true);
-      const response = await api.post("/login", { email, password });
-      localStorage.setItem("access_token", response.data.access_token);
+      const response = await api.post("/auth/login", { email, password });
+      setTokens(response.data.access_token, response.data.refresh_token);
+
+      const userResponse = await api.get("/users/me");
+      setUserProfile(userResponse.data);
       navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data?.detail || "Login failed.");
@@ -40,12 +44,14 @@ function Login() {
             type="email"
             placeholder="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}/>
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <input
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}/>
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <button type="submit" disabled={loading}>
             {loading ? "Logging in..." : "Login"}
           </button>
